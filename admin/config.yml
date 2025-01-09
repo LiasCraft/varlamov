@@ -1,0 +1,1471 @@
+backend:
+  name: git-gateway
+  accept_roles:
+    - admin
+    - editor
+  branch: master
+media_folder: theme/assets/images
+public_folder: /assets/images
+collections:
+  - name: pages
+    label: Pages
+    identifier_field: title
+    extension: md
+    create: false
+    delete: false
+    slug: '{{slug}}'
+    editor:
+      preview: false
+    folder: cms/pages
+    fields:
+      - label: Title
+        name: title
+        widget: string
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '{{slug}}.html'
+      - &ref_0
+        label: Seo
+        name: seo
+        widget: object
+        collapsed: true
+        fields:
+          - label: Title
+            name: title
+            widget: string
+            required: false
+          - label: Description
+            name: description
+            widget: string
+            required: false
+          - label: No index
+            name: noindex
+            widget: boolean
+            default: false
+            required: false
+          - label: Open Graph Title
+            name: og:title
+            widget: string
+            required: false
+          - label: Open Graph Image
+            name: og:image
+            widget: image
+            required: false
+            media_library:
+              config:
+                multiple: false
+          - label: Twitter Title
+            name: twitter:title
+            widget: string
+            default: summary
+            required: false
+          - label: Twitter Card
+            name: twitter:card
+            widget: string
+            default: summary
+            required: false
+          - label: Twitter Site
+            name: twitter:site
+            widget: string
+            required: false
+          - label: Twitter Creator
+            name: twitter:creator
+            widget: string
+            required: false
+          - label: Twitter Image
+            name: twitter:image
+            widget: image
+            required: false
+            media_library:
+              config:
+                multiple: false
+          - label: Additional HTML tags
+            name: additional_tags
+            widget: text
+            required: false
+  - name: about
+    label: Обо мне
+    folder: cms/about
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: f_zagolovok
+        label: Заголовок
+        widget: string
+        required: false
+      - hint: ''
+        name: f_opisanie
+        label: Описание
+        widget: text
+        required: false
+      - hint: ''
+        name: f_izobrazhenie-desktop
+        label: Изображение (десктоп)
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_izobrazhenie-mobilnoe
+        label: Изображение (мобильное)
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_fakt-a-zagolovok
+        label: Факт А (заголовок)
+        widget: string
+        required: false
+      - hint: ''
+        name: f_fakt-a-opisanie
+        label: Факт А (описание)
+        widget: string
+        required: false
+      - hint: Показать/скрыть факт
+        name: f_fakt-a
+        label: Факт А
+        widget: boolean
+        required: false
+        default: false
+      - hint: ''
+        name: f_fakt-b-zagolovok
+        label: Факт B (заголовок)
+        widget: string
+        required: false
+      - hint: ''
+        name: f_fakt-b-opisanie
+        label: Факт B (описание)
+        widget: string
+        required: false
+      - hint: Показать/скрыть факт
+        name: f_fakt-b
+        label: Факт B
+        widget: boolean
+        required: false
+        default: false
+      - hint: ''
+        name: f_fakt-c-zagolovok
+        label: Факт C (заголовок)
+        widget: string
+        required: false
+      - hint: ''
+        name: f_fakt-c-opisanie
+        label: Факт C (описание)
+        widget: string
+        required: false
+      - hint: Показать/скрыть факт
+        name: f_fakt-c
+        label: Факт C
+        widget: boolean
+        required: false
+        default: false
+      - hint: ''
+        name: f_fakt-d-zagolovok
+        label: Факт D (заголовок)
+        widget: string
+        required: false
+      - hint: ''
+        name: f_fakt-d-opisanie
+        label: Факт D (описание)
+        widget: string
+        required: false
+      - hint: Показать/скрыть факт
+        name: f_fakt-d
+        label: Факт D
+        widget: boolean
+        required: false
+        default: false
+      - hint: ''
+        name: f_tema
+        label: Тема
+        widget: color
+        required: false
+        enableAlpha: true
+        allowInput: true
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: about
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[about].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+    editor:
+      preview: false
+  - name: video_gallery
+    label: Видео галерея
+    folder: cms/video-gallery
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: f_stranica
+        label: Страница галереи
+        widget: select
+        required: true
+        options:
+          - label: Главная
+            value: Главная
+          - label: Свадьбы
+            value: Свадьбы
+          - label: Корпоративы
+            value: Корпоративы
+          - label: Юбилеи
+            value: Юбилеи
+      - hint: ''
+        name: f_poryadok-video
+        label: Порядок видео
+        widget: number
+        required: true
+      - hint: for iframe video with audio
+        name: f_vimeo-video-id
+        label: Vimeo Video ID
+        widget: string
+        required: true
+      - hint: ''
+        name: f_thumbnail-image
+        label: Thumbnail Image
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_thumbnail-video-new
+        label: Thumbnail Video
+        widget: string
+        required: false
+      - hint: ''
+        name: f_video-style
+        label: Video Style
+        widget: select
+        required: false
+        options:
+          - label: medium
+            value: medium
+          - label: big
+            value: big
+          - label: vertical
+            value: vertical
+      - hint: ''
+        name: f_vklyuchit-video-prevyu
+        label: Включить видео превью?
+        widget: boolean
+        required: false
+        default: false
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: video-gallery
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[video-gallery].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+    editor:
+      preview: false
+  - name: gallery_home
+    label: 'Фото: главная'
+    folder: cms/gallery-home
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: f_izobrazheniya
+        label: Изображения
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_tekstovoe-opisanie
+        label: Текстовое описание
+        widget: string
+        required: false
+      - hint: ''
+        name: f_item-style
+        label: Item Style
+        widget: select
+        required: false
+        options:
+          - label: tall
+            value: tall
+          - label: wide
+            value: wide
+          - label: big
+            value: big
+          - label: hide
+            value: hide
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: gallery-home
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[gallery-home].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+    editor:
+      preview: false
+  - name: foto_svadby
+    label: 'Фото: свадьбы'
+    folder: cms/foto-svadby
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: f_izobrazheniya
+        label: Изображения
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_tekstovoe-opisanie
+        label: Текстовое описание
+        widget: string
+        required: false
+      - hint: ''
+        name: f_item-style
+        label: Item Style
+        widget: select
+        required: false
+        options:
+          - label: tall
+            value: tall
+          - label: wide
+            value: wide
+          - label: big
+            value: big
+          - label: hide
+            value: hide
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: foto-svadby
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[foto-svadby].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+    editor:
+      preview: false
+  - name: foto_korporativy
+    label: 'Фото: корпоративы'
+    folder: cms/foto-korporativy
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: f_izobrazheniya
+        label: Изображения
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_tekstovoe-opisanie
+        label: Текстовое описание
+        widget: string
+        required: false
+      - hint: ''
+        name: f_item-style
+        label: Item Style
+        widget: select
+        required: false
+        options:
+          - label: tall
+            value: tall
+          - label: wide
+            value: wide
+          - label: big
+            value: big
+          - label: hide
+            value: hide
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: foto-korporativy
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[foto-korporativy].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+    editor:
+      preview: false
+  - name: foto_yubilei
+    label: 'Фото: юбилеи'
+    folder: cms/foto-yubilei
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: f_izobrazheniya
+        label: Изображения
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_tekstovoe-opisanie
+        label: Текстовое описание
+        widget: string
+        required: false
+      - hint: ''
+        name: f_item-style
+        label: Item Style
+        widget: select
+        required: false
+        options:
+          - label: tall
+            value: tall
+          - label: wide
+            value: wide
+          - label: big
+            value: big
+          - label: hide
+            value: hide
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: foto-yubilei
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[foto-yubilei].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+    editor:
+      preview: false
+  - name: videos_feedback
+    label: 'Отзывы: видео'
+    folder: cms/videos-feedback
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - hint: for iframe video with audio
+        name: f_vimeo-video-id
+        label: Vimeo Video ID
+        widget: string
+        required: true
+      - hint: Direct link to .mp4 or other video file for looping background video
+        name: f_video-thumbnail
+        label: Thumbnail Video
+        widget: string
+        required: false
+      - hint: ''
+        name: f_thumbnail-image
+        label: Thumbnail Image
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_thumbnail-video-new
+        label: Thumbnail Video [New]
+        widget: string
+        required: false
+      - hint: ''
+        name: f_dobavit-na-glavnuyu
+        label: Показывать на главной?
+        widget: boolean
+        required: false
+        default: false
+      - hint: ''
+        name: f_dobavit-v-svadby
+        label: Показывать в свадьбах?
+        widget: boolean
+        required: false
+        default: false
+      - hint: ''
+        name: f_dobavit-v-korporativy
+        label: Показывать в корпоративах?
+        widget: boolean
+        required: false
+        default: false
+      - hint: ''
+        name: f_dobavit-v-vecherinki
+        label: Показывать в юбилеях?
+        widget: boolean
+        required: false
+        default: false
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: videos-feedback
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[videos-feedback].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+    editor:
+      preview: false
+  - name: feedback
+    label: 'Отзывы: общие'
+    folder: cms/feedback
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: f_otzyv
+        label: Отзыв
+        widget: text
+        required: false
+      - hint: ''
+        name: f_data-opcionalno
+        label: Дата (опционально)
+        widget: string
+        required: false
+      - hint: ''
+        name: f_foto-klienta
+        label: Фото клиента
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_pokazyvat-na-glavnoy
+        label: Показывать на главной?
+        widget: boolean
+        required: false
+        default: false
+      - hint: ''
+        name: f_pokazyvat-v-svadbah
+        label: Показывать в свадьбах?
+        widget: boolean
+        required: false
+        default: false
+      - hint: ''
+        name: f_pokazyvat-v-korporativah
+        label: Показывать в корпоративах?
+        widget: boolean
+        required: false
+        default: false
+      - hint: ''
+        name: f_pokazyvat-v-vecherinkah
+        label: Показывать в юбилеях?
+        widget: boolean
+        required: false
+        default: false
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: feedback
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[feedback].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+    editor:
+      preview: false
+  - name: otzyvy_korporativnye
+    label: 'Отзывы: корпоративные'
+    folder: cms/otzyvy-korporativnye
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: f_otzyv
+        label: Отзыв
+        widget: text
+        required: false
+      - hint: ''
+        name: f_data-opcionalno
+        label: Дата (опционально)
+        widget: string
+        required: false
+      - hint: ''
+        name: f_foto-klienta
+        label: Лого компании
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_foto-otzyva
+        label: Фото отзыва
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: otzyvy-korporativnye
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[otzyvy-korporativnye].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+    editor:
+      preview: false
+  - label: Theme Settings
+    name: settings
+    identifier_field: title
+    extension: json
+    create: false
+    delete: false
+    slug: '{{slug}}'
+    editor:
+      preview: false
+    files:
+      - label: General
+        name: site
+        file: cms/_data/settings/site.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: General
+          - hint: Full domain url (needed for a correct sitemap file)
+            name: domain
+            label: Domain
+            widget: string
+            required: false
+          - name: favicon
+            label: Favicon
+            widget: image
+            allow_multiple: false
+            required: false
+          - name: apple_touch_icon
+            label: Apple Touch Icon
+            widget: image
+            allow_multiple: false
+            required: false
+          - name: header_additional_content
+            label: Additional Content Header
+            hint: Content here will be placed before </head> tag
+            widget: text
+            required: false
+          - name: footer_additional_content
+            label: Additional Content Footer
+            hint: Content here will be placed before </body> tag
+            widget: text
+            required: false
+          - name: images_optimization
+            label: Images Optimization
+            widget: object
+            collapsed: false
+            fields:
+              - label: Image Formats
+                name: formats
+                widget: select
+                multiple: true
+                options:
+                  - label: Avif
+                    value: avif
+                  - label: Webp
+                    value: webp
+              - label: Image Dimensions
+                name: dimensions
+                widget: select
+                multiple: true
+                options:
+                  - label: '500'
+                    value: 500
+                  - label: '800'
+                    value: 800
+                  - label: '1080'
+                    value: 1080
+                  - label: '1600'
+                    value: 1600
+                  - label: '2000'
+                    value: 2000
+                  - label: '2600'
+                    value: 2600
+      - label: Colors
+        name: colors
+        file: cms/_data/colors.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Colors
+      - label: Texts
+        name: texts
+        file: cms/_data/texts.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Texts
+          - hint: 'Original text: Обо мне, key: 2ece95ff'
+            label: Text
+            name: 2ece95ff
+            widget: string
+          - hint: 'Original text: Промо, key: 3c11e49f'
+            label: Text
+            name: 3c11e49f
+            widget: string
+          - hint: 'Original text: Отзывы, key: 448f1231'
+            label: Text
+            name: 448f1231
+            widget: string
+          - hint: 'Original text: Контакты, key: -c4cb6a4'
+            label: Text
+            name: '-c4cb6a4'
+            widget: string
+          - hint: 'Original text: главная, key: -6829b38e'
+            label: Text
+            name: '-6829b38e'
+            widget: string
+          - hint: 'Original text: Свадьбы, key: -2fb45a8f'
+            label: Text
+            name: '-2fb45a8f'
+            widget: string
+          - hint: 'Original text: Корпоративы, key: 1fd29efa'
+            label: Text
+            name: 1fd29efa
+            widget: string
+          - hint: 'Original text: Юбилеи, key: 5eed4529'
+            label: Text
+            name: 5eed4529
+            widget: string
+          - hint: 'Original text: ведущий мероприятий, key: 50a1578c'
+            label: Text
+            name: 50a1578c
+            widget: string
+          - hint: >-
+              Original text: Создаю яркие эмоции и незабываемые впечатления на
+              вашем празднике!, key: 75bc526d
+            label: Text
+            name: 75bc526d
+            widget: string
+          - hint: 'Original text: Связаться со мной, key: 1af6ba0e'
+            label: Text
+            name: 1af6ba0e
+            widget: string
+          - hint: 'Original text: No items found., key: 3d503d2b'
+            label: Text
+            name: 3d503d2b
+            widget: string
+          - hint: 'Original text: x, key: 78'
+            label: Text
+            name: '78'
+            widget: string
+          - hint: >-
+              Original text: This is some text inside of a div block., key:
+              7635fb4f
+            label: Text
+            name: 7635fb4f
+            widget: string
+          - hint: 'Original text: обратная связь, key: -b1fc710'
+            label: Text
+            name: '-b1fc710'
+            widget: string
+          - hint: 'Original text: Галерея, key: -1719fefd'
+            label: Text
+            name: '-1719fefd'
+            widget: string
+          - hint: 'Original text: Смотреть все фото, key: 52e72b72'
+            label: Text
+            name: 52e72b72
+            widget: string
+          - hint: 'Original text: Свадьба, key: -2fb45aaa'
+            label: Text
+            name: '-2fb45aaa'
+            widget: string
+          - hint: >-
+              Original text: Свяжитесь со мной, и мы обсудим детали вашего
+              мероприятия!, key: 41a595e2
+            label: Text
+            name: 41a595e2
+            widget: string
+          - hint: 'Original text: +7 910 455-35-33, key: 587ab2b6'
+            label: Text
+            name: 587ab2b6
+            widget: string
+          - hint: 'Original text: rv-promo@mail.ru, key: 5e6f7fe0'
+            label: Text
+            name: 5e6f7fe0
+            widget: string
+          - hint: 'Original text: ©Руслан Варламов, key: -7b394d9a'
+            label: Text
+            name: '-7b394d9a'
+            widget: string
+          - hint: 'Original text: 2011-2025, key: -1a298370'
+            label: Text
+            name: '-1a298370'
+            widget: string
+          - hint: 'Original text: Главная, key: -4f11bae'
+            label: Text
+            name: '-4f11bae'
+            widget: string
+          - hint: 'Original text: ведущий на свадьбу, key: -1938009c'
+            label: Text
+            name: '-1938009c'
+            widget: string
+          - hint: >-
+              Original text: Создаю яркие эмоции и незабываемые впечатления на
+              вашей свадьбе!, key: -5d507229
+            label: Text
+            name: '-5d507229'
+            widget: string
+          - hint: 'Original text: Видео, key: 3b56e9b7'
+            label: Text
+            name: 3b56e9b7
+            widget: string
+          - hint: 'Original text: ведущий на корпоратив, key: 3612f396'
+            label: Text
+            name: 3612f396
+            widget: string
+          - hint: >-
+              Original text: Создаю яркие эмоции и незабываемые впечатления на
+              вашем корпоративе!, key: 2ec3e1cb
+            label: Text
+            name: 2ec3e1cb
+            widget: string
+          - hint: 'Original text: ведущий на юбилей, key: 4d03fcf'
+            label: Text
+            name: 4d03fcf
+            widget: string
+          - hint: >-
+              Original text: Создаю яркие эмоции и незабываемые впечатления на
+              вашем дне рождении и юбилее!, key: 3dda2839
+            label: Text
+            name: 3dda2839
+            widget: string
+          - hint: 'Original text: Добро пожаловать, key: 5d930aff'
+            label: Text
+            name: 5d930aff
+            widget: string
+          - hint: >-
+              Original text: Я современный ведущий торжеств и праздников. Моя
+              миссия - доставлять радость и делать праздник веселым и
+              запоминающимся!, key: 15c04083
+            label: Text
+            name: 15c04083
+            widget: text
+          - hint: 'Original text: Лучший ведущий России, key: -172bbaa4'
+            label: Text
+            name: '-172bbaa4'
+            widget: string
+          - hint: 'Original text: По мнению моих клиентов, key: -76325a18'
+            label: Text
+            name: '-76325a18'
+            widget: string
+          - hint: 'Original text: Работаю с 2011 г., key: -4c9bed5f'
+            label: Text
+            name: '-4c9bed5f'
+            widget: string
+          - hint: 'Original text: Более 1000 проведенных мероприятий, key: -552afec0'
+            label: Text
+            name: '-552afec0'
+            widget: string
+          - hint: 'Original text: Актерское образование, key: -53dc265b'
+            label: Text
+            name: '-53dc265b'
+            widget: string
+          - hint: >-
+              Original text: Помогает с легкостью выступать перед публикой, key:
+              51a2d692
+            label: Text
+            name: 51a2d692
+            widget: string
+          - hint: 'Original text: Создаю яркие эмоции, key: -52a7fd67'
+            label: Text
+            name: '-52a7fd67'
+            widget: string
+          - hint: 'Original text: Умею подстроиться под любую публику, key: 54995edb'
+            label: Text
+            name: 54995edb
+            widget: string
+      - label: Links
+        name: links
+        file: cms/_data/links.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Links
+          - hint: 'Original link: #about, key: 413ec14a'
+            label: Link
+            name: 413ec14a
+            widget: string
+          - hint: 'Original link: #gallery, key: 281599cf'
+            label: Link
+            name: 281599cf
+            widget: string
+          - hint: 'Original link: #feedback, key: 39f118a8'
+            label: Link
+            name: 39f118a8
+            widget: string
+          - hint: 'Original link: #contact, key: 6c80469d'
+            label: Link
+            name: 6c80469d
+            widget: string
+          - hint: 'Original link: /, key: 2f'
+            label: Link
+            name: 2f
+            widget: string
+          - hint: 'Original link: /weddings/, key: 1bb10b21'
+            label: Link
+            name: 1bb10b21
+            widget: string
+          - hint: 'Original link: /events/, key: -3fb480d9'
+            label: Link
+            name: '-3fb480d9'
+            widget: string
+          - hint: 'Original link: /birthday/, key: -6e954dfd'
+            label: Link
+            name: '-6e954dfd'
+            widget: string
+          - hint: >-
+              Original link:
+              https://api.whatsapp.com/send/?phone=79104553533&text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5.+%D0%A5%D0%BE%D1%87%D1%83+%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C+%D0%B7%D0%B0%D0%BD%D1%8F%D1%82%D0%BE%D1%81%D1%82%D1%8C+%D0%B4%D0%B0%D1%82%D1%8B&type=phone_number&app_absent=0,
+              key: 1dad71ff
+            label: Link
+            name: 1dad71ff
+            widget: string
+          - hint: 'Original link: #, key: 23'
+            label: Link
+            name: '23'
+            widget: string
+          - hint: 'Original link: mailto:rv-promo@mail.ru, key: -7bd1c418'
+            label: Link
+            name: '-7bd1c418'
+            widget: string
+          - hint: 'Original link: https://t.me/RuslanVarlamov, key: -1c189dd1'
+            label: Link
+            name: '-1c189dd1'
+            widget: string
+          - hint: 'Original link: https://vk.com/public93163137, key: -4969235e'
+            label: Link
+            name: '-4969235e'
+            widget: string
+          - hint: >-
+              Original link: https://www.instagram.com/ruslanvarlamov/, key:
+              336e99be
+            label: Link
+            name: 336e99be
+            widget: string
+      - label: Images
+        name: images
+        file: cms/_data/images.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Images
+          - label: Image
+            name: 7ef852d2
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-774a334c'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-47336db6'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-419b9f41'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-4779e33b'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-5fd24b23'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-6f4d4460'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 533f4099
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '0'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-1f8299d7'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 792a5427
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 6127a8d3
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '11e5967'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '52743829'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
